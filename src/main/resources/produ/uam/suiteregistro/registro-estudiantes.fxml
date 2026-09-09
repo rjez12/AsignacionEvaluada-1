@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="352.0" prefWidth="330.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="produ.uam.suiteregistro.controllers.EstudianteController">
+   <children>
+      <Label layoutX="56.0" layoutY="25.0" text="Registro de Estudiantes">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font></Label>
+      <VBox layoutX="91.0" layoutY="55.0" prefHeight="156.0" prefWidth="221.0" spacing="5.0" AnchorPane.bottomAnchor="141.0">
+         <children>
+            <TextField fx:id="txtNombres" />
+            <TextField fx:id="txtApellidos" />
+            <TextField fx:id="txtCarrera" />
+            <TextField fx:id="txtCarnet" />
+            <TextField fx:id="txtCorreo">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </TextField>
+         </children>
+      </VBox>
+      <VBox layoutX="14.0" layoutY="55.0" prefHeight="156.0" prefWidth="100.0" spacing="13.0">
+         <children>
+            <Label text="Nombres:" />
+            <Label text="Apellidos:" />
+            <Label text="Carrera:" />
+            <Label text="N° de Carnet:" />
+            <Label text="Correo" />
+         </children>
+      </VBox>
+      <HBox layoutX="27.0" layoutY="211.0" prefHeight="25.0" prefWidth="280.0" spacing="20.0">
+         <children>
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#onRegistrar" prefHeight="25.0" prefWidth="87.0" text="Registrar" />
+            <Button fx:id="btnLimpiar" mnemonicParsing="false" onAction="#onLimpiar" prefHeight="25.0" prefWidth="85.0" text="Limpiar" />
+            <Button fx:id="btnMostrar" mnemonicParsing="false" onAction="#onMostrar" prefHeight="25.0" prefWidth="99.0" text="Mostrar" />
+         </children>
+      </HBox>
+      <TextArea fx:id="txtAreaMostrar" layoutX="14.0" layoutY="240.0" prefHeight="97.0" prefWidth="297.0" />
+   </children>
+</AnchorPane>
