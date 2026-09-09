@@ -13,7 +13,6 @@ import produ.uam.suiteregistro.repository.PeliculaRepository;
 
 public class PeliculaController {
 
-    // 5 TextField con fx:id
     @FXML
     private TextField txtTitulo;
     @FXML
@@ -25,7 +24,6 @@ public class PeliculaController {
     @FXML
     private TextField txtDuracion;
 
-    // Botones
     @FXML
     private Button btnRegistrar;
     @FXML
@@ -33,7 +31,6 @@ public class PeliculaController {
     @FXML
     private Button btnInformacion;
 
-    // TableView y Columnas
     @FXML
     private TableView<Pelicula> tblPeliculas;
     @FXML
@@ -47,22 +44,18 @@ public class PeliculaController {
     @FXML
     private TableColumn<Pelicula, String> colDuracion;
 
-    // Repositorio
     private final PeliculaRepository peliculaRepository = new PeliculaRepository();
 
     @FXML
     private void initialize() {
-        // Enlazar columnas con los StringProperty del modelo Pelicula
         colTitulo.setCellValueFactory(cellData -> cellData.getValue().tituloProperty());
         colDirector.setCellValueFactory(cellData -> cellData.getValue().directorProperty());
         colGenero.setCellValueFactory(cellData -> cellData.getValue().generoProperty());
         colAnioEstreno.setCellValueFactory(cellData -> cellData.getValue().anioEstrenoProperty());
         colDuracion.setCellValueFactory(cellData -> cellData.getValue().duracionProperty());
 
-        // Cargar los datos por defecto desde el repositorio
         tblPeliculas.setItems(peliculaRepository.obtenerCatalogo());
 
-        // Al seleccionar una fila, cargar los datos en los TextField
         tblPeliculas.getSelectionModel().selectedItemProperty().addListener((obs, oldSel, peliculaSeleccionada) -> {
             if (peliculaSeleccionada != null) {
                 txtTitulo.setText(peliculaSeleccionada.getTitulo());
@@ -74,7 +67,6 @@ public class PeliculaController {
         });
     }
 
-    // Procesar la información validando campos vacíos
     @FXML
     private void onRegistrarPelicula(ActionEvent event) {
         String titulo = txtTitulo.getText().trim();
@@ -83,7 +75,6 @@ public class PeliculaController {
         String anio = txtAnioEstreno.getText().trim();
         String duracion = txtDuracion.getText().trim();
 
-        // Validación obligatoria: ningún campo puede estar vacío
         if (titulo.isEmpty() || director.isEmpty() || genero.isEmpty() || anio.isEmpty() || duracion.isEmpty()) {
             mostrarAlerta(
                     AlertType.WARNING,
@@ -94,7 +85,6 @@ public class PeliculaController {
             return;
         }
 
-        // Crear modelo y guardar en repositorio
         Pelicula nuevaPelicula = new Pelicula(titulo, director, genero, anio, duracion);
         peliculaRepository.agregarPelicula(nuevaPelicula);
 
@@ -108,13 +98,11 @@ public class PeliculaController {
         limpiarFormulario();
     }
 
-    // Botón para limpiar los campos del formulario
     @FXML
     private void onLimpiarCampos(ActionEvent event) {
         limpiarFormulario();
     }
 
-    // Botón que muestra un Alert con información pertinente al caso
     @FXML
     private void onMostrarInformacion(ActionEvent event) {
         mostrarAlerta(

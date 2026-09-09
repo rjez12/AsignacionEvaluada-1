@@ -27,7 +27,6 @@ public class EstudianteController {
     @FXML
     private TextArea txtAreaMostrar;
 
-    // Instancia del repositorio
     private final EstudianteRepository estudianteRepository = new EstudianteRepository();
 
     @FXML
@@ -38,24 +37,20 @@ public class EstudianteController {
         String carnet = txtCarnet.getText().trim();
         String correo = txtCorreo.getText().trim();
 
-        // 1. Validación de campos vacíos requerida
         if (nombres.isEmpty() || apellidos.isEmpty() || carrera.isEmpty() || carnet.isEmpty() || correo.isEmpty()) {
             mostrarAlerta(AlertType.WARNING, "Campos Vacíos", "Debe completar todos los campos del formulario antes de registrar.");
             return;
         }
 
-        // 2. Validación adicional: carnet duplicado
         if (estudianteRepository.existeCarnet(carnet)) {
             mostrarAlerta(AlertType.ERROR, "Registro Duplicado", "Ya existe un estudiante registrado con el carnet: " + carnet);
             return;
         }
 
-        // 3. Crear modelo y guardar en repositorio
         Estudiante nuevoEstudiante = new Estudiante(nombres, apellidos, carrera, carnet, correo);
         estudianteRepository.guardar(nuevoEstudiante);
 
-        // 4. Agregar de inmediato al TextArea la información guardada
-        txtAreaMostrar.appendText("REGISTRO EXITOSO:\n" + nuevoEstudiante.toString() + "\n");
+        txtAreaMostrar.appendText("Bienvenido!:\n" + nuevoEstudiante.toString() + "\n");
 
         mostrarAlerta(AlertType.INFORMATION, "Éxito", "Estudiante guardado correctamente.");
         limpiarFormulario();
@@ -76,7 +71,7 @@ public class EstudianteController {
         }
 
         StringBuilder sb = new StringBuilder();
-        sb.append("=== LISTA GENERAL DE ESTUDIANTES ===\n\n");
+        sb.append("Lista general de estudiantes\n\n");
         for (Estudiante est : estudiantes) {
             sb.append(est.toString());
         }

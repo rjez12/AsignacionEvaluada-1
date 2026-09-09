@@ -24,7 +24,7 @@ public class PrincipalController {
 
     @FXML
     private void initialize() {
-        // Crear ContextMenu programáticamente para permitir clic derecho en toda la ventana
+
         ContextMenu contextMenu = new ContextMenu();
 
         MenuItem itemEstudiantes = new MenuItem("Ir a Registro de Estudiantes");
@@ -47,7 +47,6 @@ public class PrincipalController {
                 itemSalir
         );
 
-        // Se activa al hacer clic derecho en cualquier punto del AnchorPane
         if (rootPane != null) {
             rootPane.setOnContextMenuRequested(event -> {
                 contextMenu.show(rootPane, event.getScreenX(), event.getScreenY());
@@ -87,11 +86,9 @@ public class PrincipalController {
 
     private void cargarVentana(String nombreFxml, String titulo) {
         try {
-            // Se usa el ClassLoader o la clase PrincipalApplication como ancla
             java.net.URL url = produ.uam.suiteregistro.PrincipalApplication.class.getResource(nombreFxml);
 
             if (url == null) {
-                // Alternativa de ruta absoluta si no lo encuentra relativo
                 url = getClass().getResource("/produ/uam/suiteregistro/" + nombreFxml);
             }
 
@@ -113,7 +110,7 @@ public class PrincipalController {
             alertError.setHeaderText("No se pudo cargar la vista");
             alertError.setContentText("Error al intentar abrir el archivo: " + nombreFxml + "\n\nDetalle: " + e.getMessage());
             alertError.showAndWait();
-            e.printStackTrace(); // Revisa la consola inferior de Run para ver la causa exacta
+            e.printStackTrace();
         }
     }
 }
